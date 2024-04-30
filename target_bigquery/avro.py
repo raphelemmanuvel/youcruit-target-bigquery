@@ -58,6 +58,9 @@ def fix_recursive_inner(
     if value is None:
         return None
 
+    if isinstance(value, str):
+        value = value.encode('utf-8', 'ignore').decode('utf-8')
+
     if "anyOf" in props:
         return json.dumps(value)
     elif is_unstructured_object(props):

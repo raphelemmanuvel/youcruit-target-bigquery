@@ -334,7 +334,6 @@ class BigQuerySink(BatchSink):
         batch_meta: dict[str, Any] = {PARTITIONS: batch_partitions}
 
         def transform_record(record):
-            record = re.sub(r'[\ud800-\udbff][\udc00-\udfff]', '', record)
             if self.include_sdc_metadata_properties:
                 self._add_sdc_metadata_to_record(record, {}, context)
             else:
